@@ -1,5 +1,6 @@
 from email.policy import default
 from django.db import models
+from datetime import date
 
 # Create your models here.
 class Livro(models.Model):
@@ -14,7 +15,7 @@ class Livro(models.Model):
 
 
 class Emprestimo(models.Model):
-    nome_emprestado = models.CharField(max_length=200, blank=True)
-    data_emprestimo = models.DateTimeField(blank=True)
-    data_devolucao = models.DateTimeField(blank=True)
-    tempo_duracao = models.DateTimeField(blank=True)
+    nome_emprestado = models.CharField(max_length=200, blank=True, null=True)
+    data_emprestimo = models.DateTimeField(blank=True, null=True)
+    data_devolucao = models.DateTimeField(blank=True, null=True)
+    tempo_duracao = models.DateTimeField(blank=True, null=True)
