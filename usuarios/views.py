@@ -6,4 +6,4 @@ def login(request):
     return HttpResponse('Login')
 
 def cadastro(request):
-    return HttpResponse('Cadastro')
+    return render(request, 'usuarios/cadastro.html')
