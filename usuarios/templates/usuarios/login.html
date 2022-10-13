@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+<!--prettier-ignore-->
+{% block 'titulo' %}Login{% endblock 'titulo' %}
+<!--prettier-ignore-->
+
+{% block 'content' %}
+<div class="container">
+  <br />
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md">
+      <h1>Login</h1>
+      <hr />
+      {% if status == '1' %}
+      <div class="alert alert-danger" role="alert">
+        Login ou senha inválidos
+      </div>
+      {% endif %}
+
+      {% if status == '2' %}
+      <div class="alert alert-danger" role="alert">
+        Você precisar estar logado no sistema
+      </div>
+      {% endif %}
+      <form method="POST" action="{% url 'valida_login' %}">
+        {% csrf_token %}
+
+        <label>Email</label>
+        <input name="email" class="form-control" type="text" />
+
+        <label>Senha</label>
+        <input name="senha" class="form-control" type="password" />
+        <br />
+        <input class="btn btn-info" type="submit" value="Enviar" />
+
+        <a href="{% url 'cadastro' %}" class="btn btn-warning">Cadastro</a>
+      </form>
+    </div>
+    <!--Fechamento de Col-md-2-->
+
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
+{% endblock 'content' %}
