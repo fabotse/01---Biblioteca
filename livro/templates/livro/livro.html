@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load filtros %}
 <!--prettier-ignore-->
 {% block 'content' %}
 
@@ -43,6 +43,34 @@
         <input type="submit" value="Enviar" class="btn btn-primary">
         <a href="{% url 'livros' %}" class="btn btn-warning">Voltar</a>
     </form>
+
+    <hr>
+
+    <h2>Histórico de empréstimo:</h2>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Data empréstimo</th>
+            <th scope="col">Data evolução</th>
+            <th scope="col">Livro</th>
+            <th scope="col">Tempo de duração</livro>
+          </tr>
+        </thead>
+        <tbody>
+          {% for emprestimo in emprestimos  %}
+          <tr>
+            <th scope="row">{{emprestimo.nome_emprestado}}</th>
+            <td>{{emprestimo.data_emprestimo}}</td>
+            <td>{{emprestimo.data_devolucao}}</td>
+            <td>{{emprestimo.livro}}</td>
+            <td>{{ emprestimo.data_devolucao|mostra_duracao:emprestimo.data_emprestimo}} dias</td>
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+
 
 </div>
 <!--prettier-ignore-->

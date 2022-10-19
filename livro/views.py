@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse,redirect
 from usuarios.models import Usuario
-from .models import Categoria, Livro
+from .models import Categoria, Livro, Emprestimo
 # Create your views here.
 
 def livros(request):
@@ -8,7 +8,7 @@ def livros(request):
     if request.session.get('usuario'):
         usuario = Usuario.objects.get(id=request.session['usuario'])
         livros = Livro.objects.filter(usuario = usuario)
-        context = {'livros' : livros, 'usuario' : usuario, 'status':status}
+        context = {'livros' : livros, 'usuario' : usuario, 'status':status, 'usuario_logado' : request.session.get('usuario')}
 
         return render(request, 'livros/livros.html', context)
     else:
@@ -22,8 +22,8 @@ def livro(request, id):
         print(livro.usuario.id)
         if request.session.get('usuario') == livro.usuario.id:
             categoria_livro = Categoria.objects.filter(usuario=request.session.get('usuario'))
-            print(categoria_livro)
-            context = {'livro' : livro, 'categoria_livro':categoria_livro}
+            emprestimos = Emprestimo.objects.filter(livro = livro)
+            context = {'livro' : livro, 'categoria_livro':categoria_livro, 'emprestimos' : emprestimos, 'usuario_logado' : request.session.get('usuario')}
             return render(request, 'livro/livro.html', context)
         else:
             return redirect('/livros/?status=3')

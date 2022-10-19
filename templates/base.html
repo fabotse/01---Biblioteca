@@ -15,10 +15,21 @@
   </head>
   <body>
     <!-- As a link -->
+
     <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Cadastro</a>
+      <div class="container">
+        <a class="navbar-brand" href="#">Cadastro</a>
+        <!--prettier-ignore-->
+
+        {% if usuario_logado %}
+        <a href="{% url 'sair' %}" class="btn btn-danger">Sair</a>
+        {% endif %}
+      </div>
     </nav>
 
+    <!--container-->
+
+    <!--prettier-ignore-->
     {% block 'content' %}{% endblock 'content' %}
     <!-- Optional JavaScript; choose one of the two! -->
 
