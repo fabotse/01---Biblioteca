@@ -8,6 +8,14 @@
 <div class="alert alert-warning" role="alert">Este livro não é seu</div>
 {% endif %}
 
+{% if status == '4' %}
+<div class="alert alert-success" role="alert">Livro cadastrado com sucesso</div>
+{% endif %}
+
+{% if status == '5' %}
+<div class="alert alert-warning" role="alert">Algo de errado aconteceu no cadastro do livro</div>
+{% endif %}
+
 <div class="container pt-3">
   <div class="col-md-2"></div>
   <div class="row">

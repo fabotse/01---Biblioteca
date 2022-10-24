@@ -21,6 +21,20 @@
         <a class="navbar-brand" href="#">Cadastro</a>
         <!--prettier-ignore-->
 
+        <!-- Button trigger modal -->
+        <!--prettier-ignore-->
+        {% if usuario_logado %}
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Cadastrar Livro
+        </button>
+        {% endif %}
+
+        <!--prettier-ignore-->
         {% if usuario_logado %}
         <a href="{% url 'sair' %}" class="btn btn-danger">Sair</a>
         {% endif %}
@@ -35,5 +49,38 @@
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cadastrar Livro</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="{% url 'cadastrar_livro' %}" method="POST">
+              <table>
+                {% csrf_token %} {{form.as_table}}
+              </table>
+              <hr />
+              <input type="submit" class="btn btn-primary" value="Salvar" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--final modal-->
   </body>
 </html>
