@@ -30,7 +30,7 @@
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >
-          Cadastrar Livro
+          Cadastrar
         </button>
         {% endif %}
 
@@ -61,7 +61,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Cadastrar Livro</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Cadastrar</h5>
             <button
               type="button"
               class="btn-close"
@@ -70,17 +70,51 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form action="{% url 'cadastrar_livro' %}" method="POST">
-              <table>
-                {% csrf_token %} {{form.as_table}}
-              </table>
-              <hr />
-              <input type="submit" class="btn btn-primary" value="Salvar" />
-            </form>
+            <button onclick="mostrar_form(1)" class="btn btn-info">
+              Categoria
+            </button>
+            <button onclick="mostrar_form(2)" class="btn btn-info">
+              Livro
+            </button>
+            <button onclick="mostrar_form(3)" class="btn btn-info">
+              Empréstimos
+            </button>
+
+            <div id="livro" style="display: none">
+              <form action="{% url 'cadastrar_livro' %}" method="POST">
+                <table>
+                  {% csrf_token %} {{form.as_table}}
+                </table>
+                <hr />
+                <input type="submit" class="btn btn-primary" value="Salvar" />
+              </form>
+            </div>
+            <!--livro-->
+            <div id="categoria" style="display: none"></div>
+            <!--categoria-->
+            <div id="emprestimo" style="display: none"></div>
+            <!--emprestimos-->
           </div>
+          <!--modal-body-->
         </div>
       </div>
     </div>
     <!--final modal-->
+
+    <script>
+      function mostrar_form(v1) {
+        categoria = document.getElementById("categoria");
+        livro = document.getElementById("livro");
+        emprestimo = document.getElementById("emprestimo");
+
+        if (v1 == 1) {
+          console.log("Teste 1");
+        } else if (v1 == 2) {
+          console.log("Teste 2");
+        } else if (v1 == 3) {
+          console.log("Teste 3");
+        }
+      }
+    </script>
   </body>
 </html>

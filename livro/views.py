@@ -47,3 +47,12 @@ def cadastrar_livro(request):
             return redirect('/livros/?status=4')
         
         return redirect('/livros/?status=5')
+
+def confirmar_excluir(request, id):
+    livro = Livro.objects.get(id=id)
+    return render(request, 'livro/confirmar_excluir.html', {'livro':livro})
+
+
+def excluir_livro(request, id):
+    livro = Livro.objects.get(id=id).delete()
+    return redirect('/livros/')
